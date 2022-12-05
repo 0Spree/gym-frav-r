@@ -5,8 +5,8 @@ st.header('Gymnasium fraværs beregner')
 if st.selectbox('Vil du regne for: ',['Perioden', 'Året']) == 'Perioden':
     procent = 100
 
-    moduler = st.number_input("Hvor mange moduler har du i perioden? ", 1, 600)
-    missingmoduler = st.number_input("Hvor mange moduler har du været fraværende? ", 1, 600)
+    moduler = float(st.number_input(label="Hvor mange moduler har du i perioden?",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
+    missingmoduler = float(st.number_input("Hvor mange moduler har du været fraværende? ",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
 
     udregning = round(procent/moduler * missingmoduler, 1)
     print(str(udregning) + "%")
