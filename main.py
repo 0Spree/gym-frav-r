@@ -25,7 +25,7 @@ else:
     moduler2 = float(st.number_input(label="Hvor mange moduler har du for året?",step=1.,format="%.2f"))
     missingmoduler2 = float(st.number_input("Hvor mange moduler har du været fraværende? ",step=1.,format="%.2f"))
 
-    udregning2 = round(procent2/moduler2 * missingmoduler2, 1)
+    udregning2 = round(procent2/moduler2 * missingmoduler2, 5)
     print(str(udregning2) + "%")
     st.text("Du har " + str(udregning2) + "% fravær")
 
