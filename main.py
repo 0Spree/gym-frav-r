@@ -1,10 +1,11 @@
 import streamlit as st
-import time
+import pandas as pd
+import numpy as np
 # st.button('Click me')
 st.header('Gymnasium fraværs beregner') 
 if st.selectbox('Vil du regne for: ',['Perioden', 'Året']) == 'Perioden':
     procent = 100
-
+    maxp = int(10)
     moduler = float(st.number_input(label="Hvor mange moduler har du i perioden?",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
     missingmoduler = float(st.number_input("Hvor mange moduler har du været fraværende? ",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
 
@@ -12,41 +13,22 @@ if st.selectbox('Vil du regne for: ',['Perioden', 'Året']) == 'Perioden':
     print(str(udregning) + "%")
     st.text("Du har " + str(udregning) + "% fravær")
 
-    #latest_iteration = st.empty()
-    #bar = st.progress(0)
-    #num = 10
-#for i in range(num):
-    #latest_iteration.text(f'{num - i}% ud af de tilladte 10%')
-    #bar.progress((round(udregning)//num)*i)
-    #time.sleep(1)
+    graf = round(maxp-udregning)
+    if [maxp] < [graf]:
+        st.text("Du har " + str(graf) + "% fravær tilbage ud af de 10% tilladte")
+    else:
+        st.text("Du har for meget")
+
 else:
     procent2 = 100.0
-
+    maxp2 = 10
     moduler2 = float(st.number_input(label="Hvor mange moduler har du for året?",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
     missingmoduler2 = float(st.number_input("Hvor mange moduler har du været fraværende? ",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
 
     udregning2 = round(procent2/moduler2 * missingmoduler2, 5)
-    print(str(udregning2) + "%")
     st.text("Du har " + str(udregning2) + "% fravær")
-
-code = '''\.
- \\      .
-  \\ _,.+;)_
-  .\\;~%:88%%.
- (( a   `)9,8;%.
- /`   _) ' `9%%%?
-(' .-' j    '8%%'
- `"+   |    .88%)+._____..,,_   ,+%$%.
-       :.   d%9`             `-%*'"'~%$.
-    ___(   (%C                 `.   68%%9
-  ."        \7                  ;  C8%%)`
-  : ."-.__,'.____________..,`   L.  \86' ,
-  : L    : :            `  .'\.   '.  %$9%)
-  ;  -.  : |             \  \  "-._ `. `~"
-   `. !  : |              )  >     ". ?   
-     `'  : |            .' .'       : |
-         ; !          .' .'         : |
-        ,' ;         ' .'           ; (
-       .  (         j  (            `  \
-'''
-st.code(code, language='html')
+    
+    graf2 = round(maxp2-udregning2, 2)
+    if maxp2 > graf2:
+        st.text("Du har " + str(graf2) + "% fravær tilbage ud af de 10% tilladte")
+    else: print("Du har for meget")
