@@ -22,8 +22,8 @@ if st.selectbox('Vil du regne for: ',['Perioden', 'Året']) == 'Perioden':
 else:
     procent2 = 100.0
 
-    moduler2 = float(st.number_input(label="Hvor mange moduler har du for året?",step=1.,format="%.2f", min_value=1.0, max_value=600.0))
-    missingmoduler2 = float(st.number_input("Hvor mange moduler har du været fraværende? ",step=1.,format="%.2f", min_value=1.0, max_value=600.0))
+    moduler2 = float(st.number_input(label="Hvor mange moduler har du for året?",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
+    missingmoduler2 = float(st.number_input("Hvor mange moduler har du været fraværende? ",step=1.,format="%.2f", min_value=0.001, max_value=600.0))
 
     udregning2 = round(procent2/moduler2 * missingmoduler2, 5)
     print(str(udregning2) + "%")
